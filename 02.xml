@@ -1,0 +1,17 @@
+import requests
+
+def get_text_from_baidu():
+    # 获取百度首页的 HTML 代码
+    url = "https://www.baidu.com"
+    response = requests.get(url)
+    if response.status_code == 200:
+        # 从 HTML 代码中获取文字内容
+        soup = bs4.BeautifulSoup(response.content, "html.parser")
+        text = soup.find_all("div", class_="content")[0].text
+        return text
+    else:
+        return None
+
+if __name__ == "__main__":
+    text = get_text_from_baidu()
+    print(text)
